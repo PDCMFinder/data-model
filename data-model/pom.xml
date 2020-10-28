@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>org.pdxfinder</groupId>
-    <artifactId>dependencies</artifactId>
+    <artifactId>data-model</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
@@ -21,6 +21,38 @@
         <java.version>1.8</java.version>
         <neo4j.version>3.1.8</neo4j.version>
     </properties>
+
+    <name>PDX Finder Data Model</name>
+    <description>
+        Data Model including dao and repositories of the
+        PDX Finder app
+    </description>
+    <url>http://www.pdxfinder.org/</url>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Csaba Halmagyi</name>
+            <email>csaba@ebi.ac.uk</email>
+            <organization>European Bioinformatic Institute</organization>
+            <organizationUrl>https://www.ebi.ac.uk/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Alex Follette</name>
+            <email>afollette@ebi.ac.uk </email>
+            <organization>European Bioinformatic Institute</organization>
+            <organizationUrl>https://www.ebi.ac.uk/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/PDXFinder/data-model/tree/master</url>
+    </scm>
 
     <repositories>
         <repository>
@@ -33,15 +65,7 @@
         </repository>
     </repositories>
 
-    <name>dependencies</name>
-    <description>
-        Dependency management for the PdxFinder
-    </description>
-
-    <url>http://www.pdxfinder.org/</url>
-
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -108,8 +132,30 @@
             <version>3.15</version>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -155,7 +201,21 @@
                     </goals>
                 </execution>
             </executions>
-        </plugin>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
