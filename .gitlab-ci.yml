@@ -8,3 +8,4 @@ deploy:
     -  gpg --import <( echo '$pk_base64' ) || true
     - "gpg -k"
     -  find / -name 'pom.xml'
+    - "echo 'done'"
