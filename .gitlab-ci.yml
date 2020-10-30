@@ -6,10 +6,10 @@ build:
   stage: build
   script:
     - "echo '<settings> <servers> <server> <id>ossrh</id> <username>$OSSRH_use</username>> <password>$OSSRH_pass</password> </server> </servers> <profiles> <profile> <id>ossrh</id> <activation> <activeByDefault>true</activeByDefault> </activation> <properties> <gpg.executable>gpg2</gpg.executable> <gpg.keyname></gpg.keyname> <gpg.passphrase>key_passphrase</gpg.passphrase> </properties> </profile> </profiles> </settings>' >> /usr/share/maven/conf/settings.xml"
-    -  gpg --import $pk_base64 || true
+    -  gpg --import <( $pk_base64 ) || true
     - "gpg -k"
 
 deploy:
   stage: deploy
   script:
-    - "echo 'Deploying test'"
+    - mvn clean package
