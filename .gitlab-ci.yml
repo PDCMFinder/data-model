@@ -1,41 +1,16 @@
-image: "pdxfinder/mvn_cd"
-
+image: pdxfinder/mvn_cd
 stages:
   - build
   - deploy
-
-setup:
-cat << EOF > settings.xml
-  <settings>
-  <servers>
-  <server>
-  <id>ossrh</id>
-  <username>$OSSRH_use</username>>
-  <password>\$OSSRH_pass</password>
-  </server>
-  </servers>
-  <profiles>
-  <profile>
-  <id>ossrh</id>
-  <activation>
-  <activeByDefault>true</activeByDefault>
-  </activation>
-  <properties>
-  <gpg.executable>gpg2</gpg.executable>
-  <gpg.keyname></gpg.keyname>
-  <gpg.passphrase>key_passphrase</gpg.passphrase>
-  </properties>
-  </profile>
-  </profiles>
-  </settings>
-EOF
-gpg --import $pk_base64
-gpg -k
-
-
 build:
-  echo 'Building'
-
+  stage: build
+  script:
+    - "echo '<settings> <servers> <server> <id>ossrh</id> <username>$OSSRH_use</username>> <password>\\$OSSRH_pass</password> </server> </servers> <profiles> <profile> <id>ossrh</id> <activation> <activeByDefault>true</activeByDefault> </activation> <properties> <gpg.executable>gpg2</gpg.executable> <gpg.keyname></gpg.keyname> <gpg.passphrase>key_passphrase</gpg.passphrase> </properties> </profile> </profiles> </settings>' >> /usr/share/maven/conf/settings.xml"
+    - "gpg --import $pk_base64"
+    - "cat /usr/share/maven/conf/settings.xml"
+    - "gpg -k"
 
 deploy:
-  echo 'Deploying'
+  stage: deploy
+  script:
+    - "echo 'Deploying'"
