@@ -1,12 +1,11 @@
 image: "pdxfinder/mvn_cd"
 
 stages:
-  - setup
   - build
   - deploy
 
 setup:
-  cat << EOF > settings.xml
+cat << EOF > settings.xml
   <settings>
   <servers>
   <server>
@@ -29,8 +28,9 @@ setup:
   </profile>
   </profiles>
   </settings>
-  EOF
-  gpg2 --import $pk_base64
+EOF
+gpg --import $pk_base64
+gpg -k
 
 
 build:
