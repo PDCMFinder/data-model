@@ -5,7 +5,7 @@ deploy:
   stage: deploy
   script:
     - "echo '<settings> <servers> <server> <id>ossrh</id> <username>$OSSRH_use</username>> <password>$OSSRH_pass</password> </server> </servers> <profiles> <profile> <id>ossrh</id> <activation> <activeByDefault>true</activeByDefault> </activation> <properties> <gpg.executable>gpg2</gpg.executable> <gpg.keyname></gpg.keyname> <gpg.passphrase>key_passphrase</gpg.passphrase> </properties> </profile> </profiles> </settings>' >> /usr/share/maven/conf/settings.xml"
-    -  gpg --import <( echo '$pk_base64' ) || true
+    -  gpg --import <( echo "$pk_base64" ) || true
     - "gpg -k"
-    -  find / -name 'pom.xml'
-    - "echo 'done'"
+    -  cd 'data-model'
+    -  mvn clean package
