@@ -5,6 +5,6 @@ deploy:
   stage: deploy
   script:
     -  cd 'data-model'
-    - "echo '<settings> <servers> <server> <id>ossrh</id> <username>$OSSRH_use</username>> <password>$OSSRH_pass</password> </server> </servers> <profiles> <profile> <id>ossrh</id> <activation> <activeByDefault>true</activeByDefault> </activation> <properties> <gpg.executable>gpg2</gpg.executable> <gpg.keyname></gpg.keyname> <gpg.passphrase>key_passphrase</gpg.passphrase> </properties> </profile> </profiles> </settings>' > ./settings.xml"
-    -  gpg --import <( echo "$pk_base64" ) || true
+    - "echo '<settings> <servers> <server> <id>ossrh</id> <username>$OSSRH_use</username>> <password>$OSSRH_pass</password> </server> </servers> <profiles> <profile> <id>ossrh</id> <activation> <activeByDefault>true</activeByDefault> </activation> <properties> <gpg.executable>gpg2</gpg.executable> <gpg.keyname>$keyname</gpg.keyname> <gpg.passphrase>$key_passphrase</gpg.passphrase> </properties> </profile> </profiles> </settings>' > ./settings.xml"
+    -  gpg  --passphrase="$key_passphrase" --import <( echo "$pk_base64" ) || true
     -  mvn -s settings.xml clean deploy
