@@ -24,7 +24,7 @@ public interface ModelCreationRepository extends Neo4jRepository<ModelCreation, 
 
     ModelCreation findBySourcePdxId(@Param("modelId") String modelId);
 
-    @Query("MATCH (model:ModelCreation) WHERE model.dataSource = {dataSource} AND model.sourcePdxId = {modelId} " +
+    @Query("MATCH (model:ModelCreation) WHERE toLower(model.dataSource) = toLower({dataSource}) AND toLower(model.sourcePdxId) = toLower({modelId}) " +
             "WITH model " +
             "OPTIONAL MATCH (model)-[spr:SPECIMENS]-(sp:Specimen)-[hsr:HOST_STRAIN]-(hs:HostStrain) " +
             "OPTIONAL MATCH (model)-[qar:QUALITY_ASSURED_BY]-(qa:QualityAssurance) "+
