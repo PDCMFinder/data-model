@@ -29,5 +29,5 @@ addons:
 
 script:
   - echo "$pwd"
-  - ls 
+  - ls
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=PDXFinder_data-model
