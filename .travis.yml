@@ -5,7 +5,7 @@ sudo: false
 jdk:
   - openjdk8
 
-script: mvn clean package -Dgpg.skip=true
+script: mvn clean package
 
 env:
   global:
@@ -28,4 +28,4 @@ addons:
       secure: "vxtIfmXOVHVeCgIQWyqNys/C0paXc+x9Us3IDy0kTz3nRZYX2Mpx+mTdpMJLRLnSXka0SH07Ze7MAVd8semHw805J78KPdfAisTj9pDEWOTGmPsT+yqC9LSQe9moqQLd1ppjuXtkzNowcX2ZQP0CwLgLWzv9SIeoEQlD3qfPEf26zwxFSEtNWXw5ZPZB/vUXMi0s6EDIS8YSI1N9pmjevhJ6oA2Ua3qgSYxpdjS4yojYiGvtDoBOhQoonmdOaJyQ+gyi4Lif/qX2UYnwUgFv3fPOGkBCPCESGxRow3CFNYm/s3Zx54ZR0x9FaoiibWeJNCxPMd4Iqb9flZNe5dc34XoEM8hLZhWSEp0eFUAkZbORrwqD3jb/yGukD7BXGkrLz14IvpdW9QQHbnl4oW0uxj6IOl1mDsI6npVCo2IcHmF+AP3QfVrT8QQ92oiT1v+YR89V9aoyUIxrb8cuxqwsx5fAVPtrGamniAapmSTjwpzZkEpUs8PyUEnuYbwXsGG7K92V6MARaxE9iqBSYf8znHFf1qkYAegO/Ff4AVZ7mpbEzqj09nyswy29HTJXAefyM7xkCwZPiWjXXZqHYG8WW5do/8lMroXBW/pIffCm3i3zf5gcXM8P9+3BvvzE+2lh0lVFtQIRITgdJ0NqvRU/o8MoMykG9/iq62pu0Uiyb14="
 
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=PDXFinder_data-model -Dgpg.skip=true
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=PDXFinder_data-model
