@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PdmrPdxInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.rdbms.dao</a> &gt; <span class="el_source">PdmrPdxInfo.java</span></div><h1>PdmrPdxInfo.java</h1><pre class="source lang-java linenums">package org.pdxfinder.rdbms.dao;
+
+
+import com.fasterxml.jackson.annotation.*;
+
+import javax.persistence.*;
+import java.util.List;
+
+/**
+ * Created by abayomi on 20/11/2017.
+ */
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        &quot;Model ID&quot;,
+        &quot;Patient ID&quot;,
+        &quot;Gender&quot;,
+        &quot;Age&quot;,
+        &quot;Race&quot;,
+        &quot;Ethnicity&quot;,
+        &quot;Specimen Site&quot;,
+        &quot;Primary Site&quot;,
+        &quot;Initial Diagnosis&quot;,
+        &quot;Clinical Diagnosis&quot;,
+        &quot;Tumor Type&quot;,
+        &quot;Stage Classification&quot;,
+        &quot;Stage Value&quot;,
+        &quot;Grade Classification&quot;,
+        &quot;Grade Value&quot;,
+        &quot;Sample Type&quot;,
+        &quot;Samples&quot;,
+        &quot;Strain&quot;,
+        &quot;Mouse Sex&quot;,
+        &quot;Treatments&quot;,
+        &quot;Treatment Naive&quot;,
+        &quot;Engraftment Site&quot;,
+        &quot;Engraftment Type&quot;,
+        &quot;Extraction Method&quot;,
+        &quot;Date At Collection&quot;,
+        &quot;Accessibility&quot;,
+        &quot;Validations&quot;,
+        &quot;Source url&quot;
+})
+public class PdmrPdxInfo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column(unique=true)
+    private String modelID;
+
+    private String patientID;
+    private String gender;
+    private String age;
+    private String race;
+    private String ethnicity;
+    private String specimenSite;
+    private String primarySite;
+    private String initialDiagnosis;
+
+    @Column(columnDefinition=&quot;Text&quot;)
+    private String clinicalDiagnosis;
+
+    private String tumorType;
+
+    private String stageClassification;
+    private String stageValue;
+    private String gradeClassification;
+    private String gradeValue;
+
+    private String sampleType;
+    private String strain;
+    private String mouseSex;
+
+    private String treatmentNaive;
+    private String engraftmentSite;
+    private String engraftmentType;
+    private String sourceUrl;
+
+    private String extractionMethod;
+    private String dateAtCollection;
+    private String accessibility;
+
+    @OneToMany(mappedBy = &quot;pdmrPdxInfo&quot;)
+    private List&lt;Treatment&gt; treatments;
+
+    @OneToMany(mappedBy = &quot;pdmrPdxInfo&quot;)
+    private List&lt;Validation&gt; validations;
+
+    @OneToMany(mappedBy = &quot;pdmrPdxInfo&quot;)
+    private List&lt;Sample&gt; samples;
+
+
+<span class="nc" id="L98">    public PdmrPdxInfo() {</span>
+<span class="nc" id="L99">    }</span>
+
+
+    public PdmrPdxInfo(String modelID, String patientID, String gender, String age, String race, String ethnicity, String specimenSite,
+                       String primarySite, String initialDiagnosis, String clinicalDiagnosis, String tumorType, String stageClassification,
+                       String stageValue, String gradeClassification, String gradeValue, String sampleType, String strain, String mouseSex,
+                       String treatmentNaive, String engraftmentSite, String engraftmentType, String sourceUrl,
+                       String extractionMethod, String dateAtCollection, String accessibility,
+<span class="nc" id="L107">                       List&lt;Treatment&gt; treatments, List&lt;Validation&gt; validations, List&lt;Sample&gt; samples) {</span>
+<span class="nc" id="L108">        this.modelID = modelID;</span>
+<span class="nc" id="L109">        this.patientID = patientID;</span>
+<span class="nc" id="L110">        this.gender = gender;</span>
+<span class="nc" id="L111">        this.age = age;</span>
+<span class="nc" id="L112">        this.race = race;</span>
+<span class="nc" id="L113">        this.ethnicity = ethnicity;</span>
+<span class="nc" id="L114">        this.specimenSite = specimenSite;</span>
+<span class="nc" id="L115">        this.primarySite = primarySite;</span>
+<span class="nc" id="L116">        this.initialDiagnosis = initialDiagnosis;</span>
+<span class="nc" id="L117">        this.clinicalDiagnosis = clinicalDiagnosis;</span>
+<span class="nc" id="L118">        this.tumorType = tumorType;</span>
+<span class="nc" id="L119">        this.stageClassification = stageClassification;</span>
+<span class="nc" id="L120">        this.stageValue = stageValue;</span>
+<span class="nc" id="L121">        this.gradeClassification = gradeClassification;</span>
+<span class="nc" id="L122">        this.gradeValue = gradeValue;</span>
+<span class="nc" id="L123">        this.sampleType = sampleType;</span>
+<span class="nc" id="L124">        this.strain = strain;</span>
+<span class="nc" id="L125">        this.mouseSex = mouseSex;</span>
+<span class="nc" id="L126">        this.treatmentNaive = treatmentNaive;</span>
+<span class="nc" id="L127">        this.engraftmentSite = engraftmentSite;</span>
+<span class="nc" id="L128">        this.engraftmentType = engraftmentType;</span>
+<span class="nc" id="L129">        this.sourceUrl = sourceUrl;</span>
+<span class="nc" id="L130">        this.extractionMethod = extractionMethod;</span>
+<span class="nc" id="L131">        this.dateAtCollection = dateAtCollection;</span>
+<span class="nc" id="L132">        this.accessibility = accessibility;</span>
+<span class="nc" id="L133">        this.treatments = treatments;</span>
+<span class="nc" id="L134">        this.validations = validations;</span>
+<span class="nc" id="L135">        this.samples = samples;</span>
+<span class="nc" id="L136">    }</span>
+
+    @JsonProperty(&quot;Model ID&quot;)
+    public String getModelID() {
+<span class="nc" id="L140">        return modelID;</span>
+    }
+
+    @JsonProperty(&quot;Model ID&quot;)
+    public void setModelID(String modelID) {
+<span class="nc" id="L145">        this.modelID = modelID;</span>
+<span class="nc" id="L146">    }</span>
+
+    @JsonProperty(&quot;Patient ID&quot;)
+    public String getPatientID() {
+<span class="nc" id="L150">        return patientID;</span>
+    }
+
+    @JsonProperty(&quot;Patient ID&quot;)
+    public void setPatientID(String patientID) {
+<span class="nc" id="L155">        this.patientID = patientID;</span>
+<span class="nc" id="L156">    }</span>
+
+    @JsonProperty(&quot;Gender&quot;)
+    public String getGender() {
+<span class="nc" id="L160">        return gender;</span>
+    }
+
+    @JsonProperty(&quot;Gender&quot;)
+    public void setGender(String gender) {
+<span class="nc" id="L165">        this.gender = gender;</span>
+<span class="nc" id="L166">    }</span>
+
+    @JsonProperty(&quot;Age&quot;)
+    public String getAge() {
+<span class="nc" id="L170">        return age;</span>
+    }
+
+    @JsonProperty(&quot;Age&quot;)
+    public void setAge(String age) {
+<span class="nc" id="L175">        this.age = age;</span>
+<span class="nc" id="L176">    }</span>
+
+    @JsonProperty(&quot;Race&quot;)
+    public String getRace() {
+<span class="nc" id="L180">        return race;</span>
+    }
+
+    @JsonProperty(&quot;Race&quot;)
+    public void setRace(String race) {
+<span class="nc" id="L185">        this.race = race;</span>
+<span class="nc" id="L186">    }</span>
+
+    @JsonProperty(&quot;Ethnicity&quot;)
+    public String getEthnicity() {
+<span class="nc" id="L190">        return ethnicity;</span>
+    }
+
+    @JsonProperty(&quot;Ethnicity&quot;)
+    public void setEthnicity(String ethnicity) {
+<span class="nc" id="L195">        this.ethnicity = ethnicity;</span>
+<span class="nc" id="L196">    }</span>
+
+    @JsonProperty(&quot;Specimen Site&quot;)
+    public String getSpecimenSite() {
+<span class="nc" id="L200">        return specimenSite;</span>
+    }
+
+    @JsonProperty(&quot;Specimen Site&quot;)
+    public void setSpecimenSite(String specimenSite) {
+<span class="nc" id="L205">        this.specimenSite = specimenSite;</span>
+<span class="nc" id="L206">    }</span>
+
+    @JsonProperty(&quot;Primary Site&quot;)
+    public String getPrimarySite() {
+<span class="nc" id="L210">        return primarySite;</span>
+    }
+
+    @JsonProperty(&quot;Primary Site&quot;)
+    public void setPrimarySite(String primarySite) {
+<span class="nc" id="L215">        this.primarySite = primarySite;</span>
+<span class="nc" id="L216">    }</span>
+
+    @JsonProperty(&quot;Initial Diagnosis&quot;)
+    public String getInitialDiagnosis() {
+<span class="nc" id="L220">        return initialDiagnosis;</span>
+    }
+
+    @JsonProperty(&quot;Initial Diagnosis&quot;)
+    public void setInitialDiagnosis(String initialDiagnosis) {
+<span class="nc" id="L225">        this.initialDiagnosis = initialDiagnosis;</span>
+<span class="nc" id="L226">    }</span>
+
+    @JsonProperty(&quot;Clinical Diagnosis&quot;)
+    public String getClinicalDiagnosis() {
+<span class="nc" id="L230">        return clinicalDiagnosis;</span>
+    }
+
+    @JsonProperty(&quot;Clinical Diagnosis&quot;)
+    public void setClinicalDiagnosis(String clinicalDiagnosis) {
+<span class="nc" id="L235">        this.clinicalDiagnosis = clinicalDiagnosis;</span>
+<span class="nc" id="L236">    }</span>
+
+    @JsonProperty(&quot;Tumor Type&quot;)
+    public String getTumorType() {
+<span class="nc" id="L240">        return tumorType;</span>
+    }
+
+    @JsonProperty(&quot;Tumor Type&quot;)
+    public void setTumorType(String tumorType) {
+<span class="nc" id="L245">        this.tumorType = tumorType;</span>
+<span class="nc" id="L246">    }</span>
+
+    @JsonProperty(&quot;Stage Classification&quot;)
+    public String getStageClassification() {
+<span class="nc" id="L250">        return stageClassification;</span>
+    }
+
+    @JsonProperty(&quot;Stage Classification&quot;)
+    public void setStageClassification(String stageClassification) {
+<span class="nc" id="L255">        this.stageClassification = stageClassification;</span>
+<span class="nc" id="L256">    }</span>
+
+    @JsonProperty(&quot;Stage Value&quot;)
+    public String getStageValue() {
+<span class="nc" id="L260">        return stageValue;</span>
+    }
+
+
+    @JsonProperty(&quot;Stage Value&quot;)
+    public void setStageValue(String stageValue) {
+<span class="nc" id="L266">        this.stageValue = stageValue;</span>
+<span class="nc" id="L267">    }</span>
+
+    @JsonProperty(&quot;Grade Classification&quot;)
+    public String getGradeClassification() {
+<span class="nc" id="L271">        return gradeClassification;</span>
+    }
+
+    @JsonProperty(&quot;Grade Classification&quot;)
+    public void setGradeClassification(String gradeClassification) {
+<span class="nc" id="L276">        this.gradeClassification = gradeClassification;</span>
+<span class="nc" id="L277">    }</span>
+
+    @JsonProperty(&quot;Grade Value&quot;)
+    public String getGradeValue() {
+<span class="nc" id="L281">        return gradeValue;</span>
+    }
+
+    @JsonProperty(&quot;Grade Value&quot;)
+    public void setGradeValue(String gradeValue) {
+<span class="nc" id="L286">        this.gradeValue = gradeValue;</span>
+<span class="nc" id="L287">    }</span>
+
+    @JsonProperty(&quot;Sample Type&quot;)
+    public String getSampleType() {
+<span class="nc" id="L291">        return sampleType;</span>
+    }
+
+    @JsonProperty(&quot;Sample Type&quot;)
+    public void setSampleType(String sampleType) {
+<span class="nc" id="L296">        this.sampleType = sampleType;</span>
+<span class="nc" id="L297">    }</span>
+
+    @JsonProperty(&quot;Strain&quot;)
+    public String getStrain() {
+<span class="nc" id="L301">        return strain;</span>
+    }
+
+    @JsonProperty(&quot;Strain&quot;)
+    public void setStrain(String strain) {
+<span class="nc" id="L306">        this.strain = strain;</span>
+<span class="nc" id="L307">    }</span>
+
+    @JsonProperty(&quot;Mouse Sex&quot;)
+    public String getMouseSex() {
+<span class="nc" id="L311">        return mouseSex;</span>
+    }
+
+    @JsonProperty(&quot;Mouse Sex&quot;)
+    public void setMouseSex(String mouseSex) {
+<span class="nc" id="L316">        this.mouseSex = mouseSex;</span>
+<span class="nc" id="L317">    }</span>
+
+    @JsonProperty(&quot;Treatments&quot;)
+    public void setTreatments(List&lt;Treatment&gt; treatments) {
+<span class="nc" id="L321">        this.treatments = treatments;</span>
+<span class="nc" id="L322">    }</span>
+
+    @JsonProperty(&quot;Treatments&quot;)
+    public List&lt;Treatment&gt; getTreatments() {
+<span class="nc" id="L326">        return treatments;</span>
+    }
+
+    @JsonProperty(&quot;Treatment Naive&quot;)
+    public String getTreatmentNaive() {
+<span class="nc" id="L331">        return treatmentNaive;</span>
+    }
+
+    @JsonProperty(&quot;Treatment Naive&quot;)
+    public void setTreatmentNaive(String treatmentNaive) {
+<span class="nc" id="L336">        this.treatmentNaive = treatmentNaive;</span>
+<span class="nc" id="L337">    }</span>
+
+    @JsonProperty(&quot;Engraftment Site&quot;)
+    public String getEngraftmentSite() {
+<span class="nc" id="L341">        return engraftmentSite;</span>
+    }
+
+    @JsonProperty(&quot;Engraftment Site&quot;)
+    public void setEngraftmentSite(String engraftmentSite) {
+<span class="nc" id="L346">        this.engraftmentSite = engraftmentSite;</span>
+<span class="nc" id="L347">    }</span>
+
+    @JsonProperty(&quot;Engraftment Type&quot;)
+    public String getEngraftmentType() {
+<span class="nc" id="L351">        return engraftmentType;</span>
+    }
+
+    @JsonProperty(&quot;Engraftment Type&quot;)
+    public void setEngraftmentType(String engraftmentType) {
+<span class="nc" id="L356">        this.engraftmentType = engraftmentType;</span>
+<span class="nc" id="L357">    }</span>
+
+    @JsonProperty(&quot;Source url&quot;)
+    public String getSourceUrl() {
+<span class="nc" id="L361">        return sourceUrl;</span>
+    }
+
+    @JsonProperty(&quot;Source url&quot;)
+    public void setSourceUrl(String sourceUrl) {
+<span class="nc" id="L366">        this.sourceUrl = sourceUrl;</span>
+<span class="nc" id="L367">    }</span>
+
+    @JsonProperty(&quot;Extraction Method&quot;)
+    public String getExtractionMethod() {
+<span class="nc" id="L371">        return extractionMethod;</span>
+    }
+
+    @JsonProperty(&quot;Extraction Method&quot;)
+    public void setExtractionMethod(String extractionMethod) {
+<span class="nc" id="L376">        this.extractionMethod = extractionMethod;</span>
+<span class="nc" id="L377">    }</span>
+
+    @JsonProperty(&quot;Date At Collection&quot;)
+    public String getDateAtCollection() {
+<span class="nc" id="L381">        return dateAtCollection;</span>
+    }
+
+    @JsonProperty(&quot;Date At Collection&quot;)
+    public void setDateAtCollection(String dateAtCollection) {
+<span class="nc" id="L386">        this.dateAtCollection = dateAtCollection;</span>
+<span class="nc" id="L387">    }</span>
+
+    @JsonProperty(&quot;Accessibility&quot;)
+    public String getAccessibility() {
+<span class="nc" id="L391">        return accessibility;</span>
+    }
+
+    @JsonProperty(&quot;Accessibility&quot;)
+    public void setAccessibility(String accessibility) {
+<span class="nc" id="L396">        this.accessibility = accessibility;</span>
+<span class="nc" id="L397">    }</span>
+
+    @JsonProperty(&quot;Validations&quot;)
+    public List&lt;Validation&gt; getValidations() {
+<span class="nc" id="L401">        return validations;</span>
+    }
+
+    @JsonProperty(&quot;Samples&quot;)
+    public List&lt;Sample&gt; getSamples() {
+<span class="nc" id="L406">        return samples;</span>
+    }
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

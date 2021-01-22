@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HostStrain.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.graph.dao</a> &gt; <span class="el_source">HostStrain.java</span></div><h1>HostStrain.java</h1><pre class="source lang-java linenums">package org.pdxfinder.graph.dao;
+
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.neo4j.ogm.annotation.NodeEntity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+/**
+ * Represents a background strain
+ */
+@NodeEntity
+public class HostStrain {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    /**
+     * name: NOD scid gamma (appears on the filter facet, so no special chars pls)
+     * symbol: NOD.Cg-PrkdcscidIl2rgtm1Wjl/SzJ
+     * description: Sentences describing the mouse strain
+     * url: www.jax.org/strain/005557 (commercial url to buy a certain mouse)
+     *
+     * The name
+     * */
+    private String name;
+    private String symbol;
+    private String description;
+    private String url;
+
+
+    private HostStrain() {
+        // Empty constructor required as of Neo4j API 2.0.5
+    }
+
+<span class="fc" id="L38">    public HostStrain(String symbol) {</span>
+<span class="fc" id="L39">        this.symbol = symbol;</span>
+<span class="fc" id="L40">    }</span>
+
+<span class="fc" id="L42">    public HostStrain(String symbol, String name) {</span>
+<span class="fc" id="L43">        this.symbol = symbol;</span>
+<span class="fc" id="L44">        this.name = name;</span>
+<span class="fc" id="L45">    }</span>
+
+<span class="nc" id="L47">    public HostStrain(String name, String symbol, String description, String url) {</span>
+<span class="nc" id="L48">        this.name = name;</span>
+<span class="nc" id="L49">        this.symbol = symbol;</span>
+
+<span class="nc" id="L51">        this.description = description;</span>
+<span class="nc" id="L52">        this.url = url;</span>
+<span class="nc" id="L53">    }</span>
+
+    public String getName() {
+<span class="fc" id="L56">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L60">        this.name = name;</span>
+<span class="nc" id="L61">    }</span>
+
+    public String getSymbol() {
+<span class="fc" id="L64">        return symbol;</span>
+    }
+
+    public void setSymbol(String symbol) {
+<span class="nc" id="L68">        this.symbol = symbol;</span>
+<span class="nc" id="L69">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L72">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L76">        this.description = description;</span>
+<span class="nc" id="L77">    }</span>
+
+    public String getUrl() {
+<span class="nc" id="L80">        return url;</span>
+    }
+
+    public void setUrl(String url) {
+<span class="nc" id="L84">        this.url = url;</span>
+<span class="nc" id="L85">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+
+<span class="pc bpc" id="L91" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+
+<span class="fc" id="L93">        HostStrain that = (HostStrain) o;</span>
+
+<span class="fc" id="L95">        return new EqualsBuilder()</span>
+<span class="fc" id="L96">            .append(getName(), that.getName())</span>
+<span class="fc" id="L97">            .append(getSymbol(), that.getSymbol())</span>
+<span class="fc" id="L98">            .isEquals();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L103">        return new HashCodeBuilder(17, 37)</span>
+<span class="fc" id="L104">            .append(getName())</span>
+<span class="fc" id="L105">            .append(getSymbol())</span>
+<span class="fc" id="L106">            .toHashCode();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

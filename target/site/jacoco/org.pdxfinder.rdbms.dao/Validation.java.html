@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Validation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.rdbms.dao</a> &gt; <span class="el_source">Validation.java</span></div><h1>Validation.java</h1><pre class="source lang-java linenums">
+
+package org.pdxfinder.rdbms.dao;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import javax.persistence.*;
+
+@Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        &quot;Technique&quot;,
+        &quot;Description&quot;,
+        &quot;Passage&quot;
+})
+public class Validation {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private String technique;
+    private String description;
+    private String passage;
+
+    @ManyToOne
+    @JoinColumn(name=&quot;pdxinfo_id&quot;)
+    private PdmrPdxInfo pdmrPdxInfo;
+
+<span class="nc" id="L33">    public Validation() {</span>
+<span class="nc" id="L34">    }</span>
+
+<span class="nc" id="L36">    public Validation(String technique, String description, String passage) {</span>
+<span class="nc" id="L37">        this.technique = technique;</span>
+<span class="nc" id="L38">        this.description = description;</span>
+<span class="nc" id="L39">        this.passage = passage;</span>
+<span class="nc" id="L40">    }</span>
+
+
+    @JsonProperty(&quot;Technique&quot;)
+    public String getTechnique() {
+<span class="nc" id="L45">        return technique;</span>
+    }
+
+    @JsonProperty(&quot;Technique&quot;)
+    public void setTechnique(String technique) {
+<span class="nc" id="L50">        this.technique = technique;</span>
+<span class="nc" id="L51">    }</span>
+
+    @JsonProperty(&quot;Description&quot;)
+    public String getDescription() {
+<span class="nc" id="L55">        return description;</span>
+    }
+
+    @JsonProperty(&quot;Description&quot;)
+    public void setDescription(String description) {
+<span class="nc" id="L60">        this.description = description;</span>
+<span class="nc" id="L61">    }</span>
+
+    @JsonProperty(&quot;Passage&quot;)
+    public String getPassage() {
+<span class="nc" id="L65">        return passage;</span>
+    }
+
+    @JsonProperty(&quot;Passage&quot;)
+    public void setPassage(String passage) {
+<span class="nc" id="L70">        this.passage = passage;</span>
+<span class="nc" id="L71">    }</span>
+
+    public void setPdmrPdxInfo(PdmrPdxInfo pdmrPdxInfo) {
+<span class="nc" id="L74">        this.pdmrPdxInfo = pdmrPdxInfo;</span>
+<span class="nc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

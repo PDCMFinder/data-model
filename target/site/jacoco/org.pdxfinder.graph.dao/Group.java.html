@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Group.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.graph.dao</a> &gt; <span class="el_source">Group.java</span></div><h1>Group.java</h1><pre class="source lang-java linenums">package org.pdxfinder.graph.dao;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.neo4j.ogm.annotation.NodeEntity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@NodeEntity
+public class Group {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name; //The name of the group, ie: The Jackson Laboratory
+    private String type; // Group type: Provider, Project, Publication
+    private String providerType; // Academia, Industry
+    private String accessibility; //for provider group only: Academia only, Academia and Industry
+    private String accessModalities; //transnational access, collaboration only (this is specific to EuroPDX)
+
+    private String abbreviation; // used for Provider type only
+    private String description; // The description of the group
+
+    private String contact;
+
+    private String pubMedId;
+    private String publicationTitle;
+    private String authors;
+
+    private String url; // a url to their website
+
+<span class="fc" id="L33">    public Group() { }</span>
+
+<span class="fc" id="L35">    public Group(String name, String abbrev, String type) {</span>
+<span class="fc" id="L36">        this.name = name;</span>
+<span class="fc" id="L37">        this.type = type;</span>
+<span class="fc" id="L38">        this.abbreviation = abbrev;</span>
+<span class="fc" id="L39">    }</span>
+
+    public static Group createAccessibilityGroup(
+        String accessibility,
+        String accessModalities
+    ) {
+<span class="nc" id="L45">        Group ag = new Group();</span>
+<span class="nc" id="L46">        ag.setName(&quot;Has access information&quot;);</span>
+<span class="nc" id="L47">        ag.setType(&quot;Accessibility&quot;);</span>
+<span class="nc" id="L48">        ag.setAccessibility(accessibility);</span>
+<span class="nc" id="L49">        ag.setAccessModalities(accessModalities);</span>
+<span class="nc" id="L50">        return ag;</span>
+    }
+
+    public static Group createProviderGroup(
+        String name,
+        String abbreviation,
+        String description,
+        String providerType,
+        String contact,
+        String url
+    ) {
+<span class="fc" id="L61">        Group pg = new Group();</span>
+<span class="fc" id="L62">        pg.setName(name);</span>
+<span class="fc" id="L63">        pg.setType(&quot;Provider&quot;);</span>
+<span class="fc" id="L64">        pg.setProviderType(providerType);</span>
+<span class="fc" id="L65">        pg.setAbbreviation(abbreviation);</span>
+<span class="fc" id="L66">        pg.setDescription(description);</span>
+<span class="fc" id="L67">        pg.setContact(contact);</span>
+<span class="fc" id="L68">        pg.setUrl(url);</span>
+<span class="fc" id="L69">        return pg;</span>
+    }
+
+    public String getName() {
+<span class="fc" id="L73">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L77">        this.name = name;</span>
+<span class="fc" id="L78">    }</span>
+
+    public String getType() {
+<span class="fc" id="L81">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="fc" id="L85">        this.type = type;</span>
+<span class="fc" id="L86">    }</span>
+
+    public String getProviderType() {
+<span class="nc" id="L89">        return providerType;</span>
+    }
+
+    public void setProviderType(String providerType) {
+<span class="fc" id="L93">        this.providerType = providerType;</span>
+<span class="fc" id="L94">    }</span>
+
+    public String getAccessibility() {
+<span class="fc" id="L97">        return accessibility;</span>
+    }
+
+    public void setAccessibility(String accessibility) {
+<span class="nc" id="L101">        this.accessibility = accessibility;</span>
+<span class="nc" id="L102">    }</span>
+
+    public String getAccessModalities() {
+<span class="fc" id="L105">        return accessModalities;</span>
+    }
+
+    public void setAccessModalities(String accessModalities) {
+<span class="nc" id="L109">        this.accessModalities = accessModalities;</span>
+<span class="nc" id="L110">    }</span>
+
+    public String getAbbreviation() {
+<span class="fc" id="L113">        return abbreviation;</span>
+    }
+
+    public void setAbbreviation(String abbreviation) {
+<span class="fc" id="L117">        this.abbreviation = abbreviation;</span>
+<span class="fc" id="L118">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L121">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="fc" id="L125">        this.description = description;</span>
+<span class="fc" id="L126">    }</span>
+
+    public String getContact() {
+<span class="nc" id="L129">        return contact;</span>
+    }
+
+    public void setContact(String contact) {
+<span class="fc" id="L133">        this.contact = contact;</span>
+<span class="fc" id="L134">    }</span>
+
+    public String getPubMedId() {
+<span class="nc" id="L137">        return pubMedId;</span>
+    }
+
+    public void setPubMedId(String pubMedId) {
+<span class="nc" id="L141">        this.pubMedId = pubMedId;</span>
+<span class="nc" id="L142">    }</span>
+
+    public String getPublicationTitle() {
+<span class="nc" id="L145">        return publicationTitle;</span>
+    }
+
+    public void setPublicationTitle(String publicationTitle) {
+<span class="nc" id="L149">        this.publicationTitle = publicationTitle;</span>
+<span class="nc" id="L150">    }</span>
+
+    public String getAuthors() {
+<span class="nc" id="L153">        return authors;</span>
+    }
+
+    public void setAuthors(String authors) {
+<span class="nc" id="L157">        this.authors = authors;</span>
+<span class="nc" id="L158">    }</span>
+
+    public String getUrl() {
+<span class="nc" id="L161">        return url;</span>
+    }
+
+    public void setUrl(String url) {
+<span class="fc" id="L165">        this.url = url;</span>
+<span class="fc" id="L166">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        if (this == o) return true;</span>
+
+<span class="pc bpc" id="L172" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+
+<span class="fc" id="L174">        Group group = (Group) o;</span>
+
+<span class="fc" id="L176">        return new EqualsBuilder()</span>
+<span class="fc" id="L177">            .append(getName(), group.getName())</span>
+<span class="fc" id="L178">            .append(getType(), group.getType())</span>
+<span class="fc" id="L179">            .append(getAccessibility(), group.getAccessibility())</span>
+<span class="fc" id="L180">            .append(getAccessModalities(), group.getAccessModalities())</span>
+<span class="fc" id="L181">            .isEquals();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L186">        return new HashCodeBuilder(17, 37)</span>
+<span class="fc" id="L187">            .append(getName())</span>
+<span class="fc" id="L188">            .append(getType())</span>
+<span class="fc" id="L189">            .append(getAccessibility())</span>
+<span class="fc" id="L190">            .append(getAccessModalities())</span>
+<span class="fc" id="L191">            .toHashCode();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L196">        return String.format(&quot;[%s: %s]&quot;, this.type, this.name);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
