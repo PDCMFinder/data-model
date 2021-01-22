@@ -1,0 +1,21 @@
+language: java
+sudo: false
+jdk:
+  - openjdk11
+env:
+  global:
+    - JAVA_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xmn48M -Xmx512M"
+    - NUM_THREADS=2
+    - NODE_VERSION="8.11.3"
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/969b5598af30afd3e0a2
+    on_success: always
+    on_failure: always
+    on_start: never
+addons:
+  sonarcloud:
+    organization: pdxfinder
+cript:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=data-model -Dsonar.login="zV+CSCIVBB6AuAq3giobCzn7zFsg/n+YSiHDc82+iKsQbtgZy6QnRsSBhrkgb5sWI5WRM9hDTb/sFsqBaukt6vL7ygRJ2+IO5pokQ5CpE5Hfgc7Y/ibQNrPTkx9PZ3I/5C2C9zrydqfKIVb1OAtQoFccDLHKpwN4FVoBlzS4nJ6DXw820kvkBHvdRuYg85I4xqYcRRBpbW3b6bnMLAEYVRO5kiSt+YcQ732nD8EDjYJTxJbQiR7gquxVqSORKUesHXR0hGr9UwYn9w/dH+z4I2cgMptUPtc7+eQPmi267B32R0QCRtil7xhab7ohmToBxjDjNa+fpOBS403AnrfDhZMf2IzUIIn7DhDAfvZ68XzDYVuKrCUGm1SLpKJt5KZmbpnAvELQWRNR67NhsaYh2iuN8ZSn02exm9eMPetoDj95F3tQ3F/9Zg0L1nsVMF/vNSupu6CCE/oyg0xJ1hqn7mp9hHYAhg71sBsmXahovMyJLdjP2G2dApQlhzL2RUOc1mAe7ZF7YRkvt4j5kcmABWqTsaAvKGoJd/LPL1gQp5kERfgiQWKsQXLdLbSG8EO64mroIeMjU6ThF4gbNyVV8YDJViK0J4ZPnSS+CowIdam/kSHjcBYyZPAEernhHOcpPO6iP4DHwFuClnDHgwmpCudpWPbA1AT6tdLthORs+Fo="
