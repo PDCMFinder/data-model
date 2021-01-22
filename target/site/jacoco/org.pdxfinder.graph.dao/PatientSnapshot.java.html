@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PatientSnapshot.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.graph.dao</a> &gt; <span class="el_source">PatientSnapshot.java</span></div><h1>PatientSnapshot.java</h1><pre class="source lang-java linenums">package org.pdxfinder.graph.dao;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Created by jmason on 16/03/2017.
+ */
+@NodeEntity
+public class PatientSnapshot {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String ageAtCollection;
+    private String dateAtCollection;
+    private String treatmentNaive;
+
+    private String collectionEvent;
+    private String elapsedTime;
+    private String eventType;
+
+    private String virologyStatus;
+
+
+    @Relationship(type = &quot;COLLECTION_EVENT&quot;, direction = Relationship.INCOMING)
+    private Patient patient;
+
+    @Relationship(type = &quot;SAMPLED_FROM&quot;)
+    private Set&lt;Sample&gt; samples;
+
+    @Relationship(type = &quot;SUMMARY_OF_TREATMENT&quot;, direction = Relationship.INCOMING)
+    private TreatmentSummary treatmentSummary;
+
+<span class="fc" id="L43">    public PatientSnapshot() {</span>
+<span class="fc" id="L44">    }</span>
+
+<span class="fc" id="L46">    public PatientSnapshot(Patient patient, String ageAtCollection) {</span>
+<span class="fc" id="L47">        this.patient = patient;</span>
+<span class="fc" id="L48">        this.ageAtCollection = ageAtCollection;</span>
+<span class="fc" id="L49">    }</span>
+
+<span class="fc" id="L51">    public PatientSnapshot(Patient patient, String ageAtCollection, String dateAtCollection, String collectionEvent, String elapsedTime) {</span>
+<span class="fc" id="L52">        this.patient = patient;</span>
+<span class="fc" id="L53">        this.ageAtCollection = ageAtCollection;</span>
+<span class="fc" id="L54">        this.dateAtCollection = dateAtCollection;</span>
+<span class="fc" id="L55">        this.collectionEvent = collectionEvent;</span>
+<span class="fc" id="L56">        this.elapsedTime = elapsedTime;</span>
+<span class="fc" id="L57">    }</span>
+
+    public String getAgeBin() {
+        String ageBin;
+
+<span class="fc" id="L62">        String age = this.ageAtCollection;</span>
+        Integer ageInteger;
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if(age.contains(&quot;mo&quot;)){</span>
+<span class="fc" id="L66">            return getPediatricAgeBin(age);</span>
+        }
+        else{
+
+            try {
+<span class="fc" id="L71">                ageInteger = Integer.parseInt(this.ageAtCollection);</span>
+<span class="fc" id="L72">                return getAgeBin(ageInteger);</span>
+<span class="nc" id="L73">            } catch (Exception e) {</span>
+                // probably a parse exception
+<span class="nc" id="L75">                ageBin = this.ageAtCollection;</span>
+            }
+
+        }
+
+<span class="nc" id="L80">        return ageBin;</span>
+
+
+
+    }
+
+    private String getPediatricAgeBin(String age){
+
+        Integer ageInteger;
+
+        try {
+<span class="fc" id="L91">            String ageClean = age.replaceAll(&quot;[a-zA-Z _-]&quot;, &quot;&quot;);</span>
+<span class="fc" id="L92">            ageInteger = Integer.parseInt(ageClean);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">            if (ageInteger &lt;= 23) {</span>
+<span class="fc" id="L94">                return &quot;0-23 months&quot;;</span>
+            } else {
+<span class="fc" id="L96">                return getAgeBin(ageInteger / 12);</span>
+            }
+        }
+<span class="nc" id="L99">        catch (Exception e){</span>
+<span class="nc" id="L100">            return age;</span>
+        }
+    }
+
+
+    private String getAgeBin(Integer ageInteger){
+        String ageBin;
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        if(ageInteger &lt;2){</span>
+<span class="fc" id="L108">            ageBin = &quot;0-23 months&quot;;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        } else if (ageInteger &lt; 10) {</span>
+<span class="fc" id="L110">            ageBin = &quot;2-9&quot;;</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        } else if (ageInteger &lt; 20) {</span>
+<span class="fc" id="L112">            ageBin = &quot;10-19&quot;;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        } else if (ageInteger &lt; 30) {</span>
+<span class="fc" id="L114">            ageBin = &quot;20-29&quot;;</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        } else if (ageInteger &lt; 40) {</span>
+<span class="fc" id="L116">            ageBin = &quot;30-39&quot;;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        } else if (ageInteger &lt; 50) {</span>
+<span class="fc" id="L118">            ageBin = &quot;40-49&quot;;</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        } else if (ageInteger &lt; 60) {</span>
+<span class="fc" id="L120">            ageBin = &quot;50-59&quot;;</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        } else if (ageInteger &lt; 70) {</span>
+<span class="fc" id="L122">            ageBin = &quot;60-69&quot;;</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        } else if (ageInteger &lt; 80) {</span>
+<span class="fc" id="L124">            ageBin = &quot;70-79&quot;;</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">        } else if (ageInteger &lt; 90) {</span>
+<span class="fc" id="L126">            ageBin = &quot;80-89&quot;;</span>
+        }
+        else {
+<span class="fc" id="L129">            ageBin = &quot;90+&quot;;</span>
+        }
+
+<span class="fc" id="L132">        return ageBin;</span>
+    }
+
+
+<span class="fc" id="L136">    public PatientSnapshot(Patient patient, String ageAtCollection, Set&lt;Sample&gt; samples) {</span>
+<span class="fc" id="L137">        this.patient = patient;</span>
+<span class="fc" id="L138">        this.ageAtCollection = ageAtCollection;</span>
+<span class="fc" id="L139">        this.samples = samples;</span>
+<span class="fc" id="L140">    }</span>
+
+<span class="fc" id="L142">    public PatientSnapshot(Patient patient, String ageAtCollection, Set&lt;Sample&gt; samples, TreatmentSummary treatmentSummary) {</span>
+<span class="fc" id="L143">        this.patient = patient;</span>
+<span class="fc" id="L144">        this.ageAtCollection = ageAtCollection;</span>
+<span class="fc" id="L145">        this.samples = samples;</span>
+<span class="fc" id="L146">        this.treatmentSummary = treatmentSummary;</span>
+<span class="fc" id="L147">    }</span>
+
+    public String getAgeAtCollection() {
+<span class="fc" id="L150">        return ageAtCollection;</span>
+    }
+
+    public void setAgeAtCollection(String ageAtCollection) {
+<span class="fc" id="L154">        this.ageAtCollection = ageAtCollection;</span>
+<span class="fc" id="L155">    }</span>
+
+    public Set&lt;Sample&gt; getSamples() {
+<span class="nc" id="L158">        return samples;</span>
+    }
+
+    public void setSamples(Set&lt;Sample&gt; samples) {
+<span class="fc" id="L162">        this.samples = samples;</span>
+<span class="fc" id="L163">    }</span>
+    
+    public void addSample(Sample sample){
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">        if(this.samples == null){</span>
+<span class="nc" id="L167">            this.samples = new HashSet&lt;&gt;();</span>
+        }
+<span class="fc" id="L169">        this.samples.add(sample);</span>
+<span class="fc" id="L170">    }</span>
+
+    public Patient getPatient() {
+<span class="fc" id="L173">        return patient;</span>
+    }
+
+    public void setPatient(Patient patient) {
+<span class="nc" id="L177">        this.patient = patient;</span>
+<span class="nc" id="L178">    }</span>
+
+    public String getDateAtCollection() {
+<span class="fc" id="L181">        return dateAtCollection;</span>
+    }
+
+    public void setDateAtCollection(String dateAtCollection) {
+<span class="fc" id="L185">        this.dateAtCollection = dateAtCollection;</span>
+<span class="fc" id="L186">    }</span>
+
+    public String getTreatmentNaive() {
+<span class="nc" id="L189">        return treatmentNaive;</span>
+    }
+
+    public void setTreatmentNaive(String treatmentNaive) {
+<span class="nc" id="L193">        this.treatmentNaive = treatmentNaive;</span>
+<span class="nc" id="L194">    }</span>
+
+    public TreatmentSummary getTreatmentSummary() {
+<span class="nc" id="L197">        return treatmentSummary;</span>
+    }
+
+    public void setTreatmentSummary(TreatmentSummary treatmentSummary) {
+<span class="nc" id="L201">        this.treatmentSummary = treatmentSummary;</span>
+<span class="nc" id="L202">    }</span>
+
+    public String getCollectionEvent() {
+<span class="fc" id="L205">        return collectionEvent;</span>
+    }
+
+    public void setCollectionEvent(String collectionEvent) {
+<span class="fc" id="L209">        this.collectionEvent = collectionEvent;</span>
+<span class="fc" id="L210">    }</span>
+
+    public String getElapsedTime() {
+<span class="fc" id="L213">        return elapsedTime;</span>
+    }
+
+    public void setElapsedTime(String elapsedTime) {
+<span class="fc" id="L217">        this.elapsedTime = elapsedTime;</span>
+<span class="fc" id="L218">    }</span>
+
+    public String getEventType() {
+<span class="nc" id="L221">        return eventType;</span>
+    }
+
+    public void setEventType(String eventType) {
+<span class="nc" id="L225">        this.eventType = eventType;</span>
+<span class="nc" id="L226">    }</span>
+
+    public String getVirologyStatus() {
+<span class="nc" id="L229">        return virologyStatus;</span>
+    }
+
+    public void setVirologyStatus(String virologyStatus) {
+<span class="nc" id="L233">        this.virologyStatus = virologyStatus;</span>
+<span class="nc" id="L234">    }</span>
+
+    public void addTreatmentProtocol(TreatmentProtocol treatmentProtocol){
+
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        if(treatmentSummary == null){</span>
+
+<span class="nc" id="L240">            treatmentSummary = new TreatmentSummary();</span>
+        }
+
+<span class="nc" id="L243">        treatmentSummary.addTreatmentProtocol(treatmentProtocol);</span>
+<span class="nc" id="L244">    }</span>
+
+
+    @Override
+    public String toString() {
+<span class="nc" id="L249">        return String.format(&quot;[%s at age %s]&quot;, getPatient().getExternalId(), getAgeAtCollection());</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+
+<span class="pc bpc" id="L256" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+
+<span class="fc" id="L258">        PatientSnapshot that = (PatientSnapshot) o;</span>
+
+<span class="fc" id="L260">        return new EqualsBuilder()</span>
+<span class="fc" id="L261">            .append(getAgeAtCollection(), that.getAgeAtCollection())</span>
+<span class="fc" id="L262">            .append(getDateAtCollection(), that.getDateAtCollection())</span>
+<span class="fc" id="L263">            .append(getCollectionEvent(), that.getCollectionEvent())</span>
+<span class="fc" id="L264">            .append(getElapsedTime(), that.getElapsedTime())</span>
+<span class="fc" id="L265">            .append(getPatient(), that.getPatient())</span>
+<span class="fc" id="L266">            .isEquals();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L271">        return new HashCodeBuilder(17, 37)</span>
+<span class="fc" id="L272">            .append(getAgeAtCollection())</span>
+<span class="fc" id="L273">            .append(getDateAtCollection())</span>
+<span class="fc" id="L274">            .append(getCollectionEvent())</span>
+<span class="fc" id="L275">            .append(getElapsedTime())</span>
+<span class="fc" id="L276">            .append(getPatient())</span>
+<span class="fc" id="L277">            .toHashCode();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

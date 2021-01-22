@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Specimen.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.graph.dao</a> &gt; <span class="el_source">Specimen.java</span></div><h1>Specimen.java</h1><pre class="source lang-java linenums">package org.pdxfinder.graph.dao;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+/**
+ * Created by jmason on 06/06/2017.
+ */
+@NodeEntity
+public class Specimen {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String externalId;
+
+    private String passage;
+
+
+    @Relationship(type = &quot;SAMPLED_FROM&quot;)
+    private Sample sample;
+
+    @Relationship(type = &quot;TREATED_WITH&quot;, direction = Relationship.INCOMING)
+    private TreatmentProtocol treatmentProtocol;
+
+    @Relationship(type = &quot;ENGRAFTMENT_SITE&quot;)
+    private EngraftmentSite engraftmentSite;
+
+    @Relationship(type = &quot;ENGRAFTMENT_TYPE&quot;)
+    private EngraftmentType engraftmentType;
+
+    @Relationship(type = &quot;ENGRAFTMENT_MATERIAL&quot;)
+    private EngraftmentMaterial engraftmentMaterial;
+
+    @Relationship(type = &quot;HOST_STRAIN&quot;)
+    private HostStrain hostStrain;
+
+
+<span class="nc" id="L44">    public Specimen() {</span>
+<span class="nc" id="L45">    }</span>
+
+    public String getExternalId() {
+<span class="nc" id="L48">        return externalId;</span>
+    }
+
+    public void setExternalId(String externalId) {
+<span class="nc" id="L52">        this.externalId = externalId;</span>
+<span class="nc" id="L53">    }</span>
+
+
+    public String getPassage() {
+<span class="nc" id="L57">        return passage;</span>
+    }
+
+    public void setPassage(String passage) {
+<span class="nc" id="L61">        this.passage = passage;</span>
+<span class="nc" id="L62">    }</span>
+
+    public Sample getSample() {
+<span class="nc" id="L65">        return sample;</span>
+    }
+
+    public void setSample(Sample sample) {
+<span class="nc" id="L69">        this.sample = sample;</span>
+<span class="nc" id="L70">    }</span>
+
+    public TreatmentProtocol getTreatment() {
+<span class="nc" id="L73">        return treatmentProtocol;</span>
+    }
+
+    public void setTreatment(TreatmentProtocol treatment) {
+<span class="nc" id="L77">        this.treatmentProtocol = treatment;</span>
+<span class="nc" id="L78">    }</span>
+
+    public EngraftmentSite getEngraftmentSite() {
+<span class="nc" id="L81">        return engraftmentSite;</span>
+    }
+
+    public void setEngraftmentSite(EngraftmentSite engraftmentSite) {
+<span class="nc" id="L85">        this.engraftmentSite = engraftmentSite;</span>
+<span class="nc" id="L86">    }</span>
+
+    public EngraftmentType getEngraftmentType() {
+<span class="nc" id="L89">        return engraftmentType;</span>
+    }
+
+    public void setEngraftmentType(EngraftmentType engraftmentType) {
+<span class="nc" id="L93">        this.engraftmentType = engraftmentType;</span>
+<span class="nc" id="L94">    }</span>
+
+    public EngraftmentMaterial getEngraftmentMaterial() {
+<span class="nc" id="L97">        return engraftmentMaterial;</span>
+    }
+
+    public void setEngraftmentMaterial(EngraftmentMaterial engraftmentMaterial) {
+<span class="nc" id="L101">        this.engraftmentMaterial = engraftmentMaterial;</span>
+<span class="nc" id="L102">    }</span>
+
+    public HostStrain getHostStrain() {
+<span class="nc" id="L105">        return hostStrain;</span>
+    }
+
+    public void setHostStrain(HostStrain hostStrain) {
+<span class="nc" id="L109">        this.hostStrain = hostStrain;</span>
+<span class="nc" id="L110">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (this == o) return true;</span>
+
+<span class="nc bnc" id="L116" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+
+<span class="nc" id="L118">        Specimen specimen = (Specimen) o;</span>
+
+<span class="nc" id="L120">        return new EqualsBuilder()</span>
+<span class="nc" id="L121">            .append(getPassage(), specimen.getPassage())</span>
+<span class="nc" id="L122">            .append(getHostStrain(), specimen.getHostStrain())</span>
+<span class="nc" id="L123">            .isEquals();</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L128">        return new HashCodeBuilder(17, 37)</span>
+<span class="nc" id="L129">            .append(getPassage())</span>
+<span class="nc" id="L130">            .append(getHostStrain())</span>
+<span class="nc" id="L131">            .toHashCode();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L136">        return String.format(&quot;[%s - %s]&quot;, getPassage(), getHostStrain().getSymbol());</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Platform.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.graph.dao</a> &gt; <span class="el_source">Platform.java</span></div><h1>Platform.java</h1><pre class="source lang-java linenums">package org.pdxfinder.graph.dao;
+
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.Set;
+
+/**
+ * Created by jmason on 21/07/2017.
+ */
+@NodeEntity
+public class Platform {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    private String url;
+    private String type;
+
+    @Relationship(type = &quot;GROUP&quot;, direction = Relationship.INCOMING)
+    private Group group;
+
+    @Relationship(type = &quot;ASSOCIATED_WITH&quot;)
+    private Set&lt;PlatformAssociation&gt; platformAssociations;
+
+<span class="fc" id="L29">    public Platform() {</span>
+<span class="fc" id="L30">    }</span>
+
+<span class="nc" id="L32">    public Platform(Set&lt;PlatformAssociation&gt; platformAssociations) {</span>
+<span class="nc" id="L33">        this.platformAssociations = platformAssociations;</span>
+<span class="nc" id="L34">    }</span>
+
+    public Set&lt;PlatformAssociation&gt; getPlatformAssociations() {
+<span class="fc" id="L37">        return platformAssociations;</span>
+    }
+
+    public void setPlatformAssociations(Set&lt;PlatformAssociation&gt; platformAssociations) {
+<span class="fc" id="L41">        this.platformAssociations = platformAssociations;</span>
+<span class="fc" id="L42">    }</span>
+
+    public String getName() {
+<span class="nc" id="L45">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="fc" id="L49">        this.name = name;</span>
+<span class="fc" id="L50">    }</span>
+
+    public String getUrl() {
+<span class="nc" id="L53">        return url;</span>
+    }
+
+    public void setUrl(String url) {
+<span class="nc" id="L57">        this.url = url;</span>
+<span class="nc" id="L58">    }</span>
+
+    public Group getGroup() {
+<span class="nc" id="L61">        return group;</span>
+    }
+
+    public void setGroup(Group group) {
+<span class="fc" id="L65">        this.group = group;</span>
+<span class="fc" id="L66">    }</span>
+
+    public String getType() {
+<span class="nc" id="L69">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="nc" id="L73">        this.type = type;</span>
+<span class="nc" id="L74">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

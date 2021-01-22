@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OntologyTerm.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.graph.dao</a> &gt; <span class="el_source">OntologyTerm.java</span></div><h1>OntologyTerm.java</h1><pre class="source lang-java linenums">package org.pdxfinder.graph.dao;
+
+import org.neo4j.ogm.annotation.Index;
+import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Created by csaba on 07/06/2017.
+ */
+@NodeEntity
+public class OntologyTerm {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Index
+    private String url;
+
+    @Index
+    private String label;
+
+    private int directMappedSamplesNumber;
+
+    private int indirectMappedSamplesNumber;
+
+    private Set&lt;String&gt; synonyms;
+
+    @Index
+    private String type;
+
+    private String description;
+
+<span class="pc" id="L39">    private boolean allowAsSuggestion = true;</span>
+
+    @Relationship(type = &quot;SUBCLASS_OF&quot; ,direction = Relationship.OUTGOING)
+    private Set&lt;OntologyTerm&gt; subclassOf;
+
+    @Relationship(type = &quot;MAPPED_TO&quot;, direction = Relationship.INCOMING)
+    private SampleToOntologyRelationship sampleMappedTo;
+
+    @Relationship(type = &quot;MAPPED_TO&quot;, direction = Relationship.INCOMING)
+    private TreatmentToOntologyRelationship treatmentMappedTo;
+
+
+<span class="nc" id="L51">    public OntologyTerm() {</span>
+<span class="nc" id="L52">    }</span>
+
+<span class="fc" id="L54">    public OntologyTerm(String url, String label) {</span>
+<span class="fc" id="L55">        this.url = url;</span>
+<span class="fc" id="L56">        this.label = label;</span>
+<span class="fc" id="L57">        this.directMappedSamplesNumber = 0;</span>
+<span class="fc" id="L58">        this.indirectMappedSamplesNumber = 0;</span>
+<span class="fc" id="L59">        this.synonyms = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L60">    }</span>
+
+    public Long getId() {
+<span class="nc" id="L63">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="nc" id="L67">        this.id = id;</span>
+<span class="nc" id="L68">    }</span>
+
+    public String getUrl() {
+<span class="nc" id="L71">        return url;</span>
+    }
+
+    public void setUrl(String url) {
+<span class="nc" id="L75">        this.url = url;</span>
+<span class="nc" id="L76">    }</span>
+
+    public String getLabel() {
+<span class="fc" id="L79">        return label;</span>
+    }
+
+    public void setLabel(String label) {
+<span class="nc" id="L83">        this.label = label;</span>
+<span class="nc" id="L84">    }</span>
+
+    public Set&lt;OntologyTerm&gt; getSubclassOf() {
+<span class="nc" id="L87">        return subclassOf;</span>
+    }
+
+    public void setSubclassOf(Set&lt;OntologyTerm&gt; subclassOf) {
+<span class="nc" id="L91">        this.subclassOf = subclassOf;</span>
+<span class="nc" id="L92">    }</span>
+
+    public SampleToOntologyRelationship getSampleMappedTo() {
+<span class="nc" id="L95">        return sampleMappedTo;</span>
+    }
+
+    public void setSampleMappedTo(SampleToOntologyRelationship sampleMappedTo) {
+<span class="nc" id="L99">        this.sampleMappedTo = sampleMappedTo;</span>
+<span class="nc" id="L100">    }</span>
+
+    public void addSubclass(OntologyTerm ot){
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if(this.subclassOf == null){</span>
+<span class="nc" id="L104">            this.subclassOf = new HashSet&lt;OntologyTerm&gt;();</span>
+        }
+<span class="nc" id="L106">        this.subclassOf.add(ot);</span>
+<span class="nc" id="L107">    }</span>
+
+    public int getDirectMappedSamplesNumber() {
+<span class="nc" id="L110">        return directMappedSamplesNumber;</span>
+    }
+
+    public void setDirectMappedSamplesNumber(int directMappedSamplesNumber) {
+
+<span class="nc" id="L115">        this.directMappedSamplesNumber = directMappedSamplesNumber;</span>
+<span class="nc" id="L116">    }</span>
+
+    public int getIndirectMappedSamplesNumber() {
+<span class="nc" id="L119">        return indirectMappedSamplesNumber;</span>
+    }
+
+    public void setIndirectMappedSamplesNumber(int indirectMappedSamplesNumber) {
+<span class="nc" id="L123">        this.indirectMappedSamplesNumber = indirectMappedSamplesNumber;</span>
+<span class="nc" id="L124">    }</span>
+
+    public Set&lt;String&gt; getSynonyms() {
+<span class="nc" id="L127">        return synonyms;</span>
+    }
+
+    public void setSynonyms(Set&lt;String&gt; synonyms) {
+<span class="nc" id="L131">        this.synonyms = synonyms;</span>
+<span class="nc" id="L132">    }</span>
+
+    public TreatmentToOntologyRelationship getTreatmentMappedTo() {
+<span class="nc" id="L135">        return treatmentMappedTo;</span>
+    }
+
+    public void setTreatmentMappedTo(TreatmentToOntologyRelationship treatmentMappedTo) {
+<span class="nc" id="L139">        this.treatmentMappedTo = treatmentMappedTo;</span>
+<span class="nc" id="L140">    }</span>
+
+    public String getType() {
+<span class="nc" id="L143">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="nc" id="L147">        this.type = type;</span>
+<span class="nc" id="L148">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L151">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L155">        this.description = description;</span>
+<span class="nc" id="L156">    }</span>
+
+    public boolean isAllowAsSuggestion() {
+<span class="nc" id="L159">        return allowAsSuggestion;</span>
+    }
+
+    public void setAllowAsSuggestion(boolean allowAsSuggestion) {
+<span class="nc" id="L163">        this.allowAsSuggestion = allowAsSuggestion;</span>
+<span class="nc" id="L164">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
