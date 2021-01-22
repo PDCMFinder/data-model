@@ -33,7 +33,7 @@ public class PatientSnapshotTest {
         Assert.assertEquals(patientSnapshot2.getAgeBin(), "0-23 months");
         Assert.assertEquals(patientSnapshot3.getAgeBin(), "2-9");
         Assert.assertEquals(patientSnapshot4.getAgeBin(), "2-9");
-        Assert.assertEquals(patientSnapshot5.getAgeBin(), "10-19");
+        Assert.assertEquals(patientSnapshot5.getAgeBin(), "10-15");
         Assert.assertEquals(patientSnapshot6.getAgeBin(), "20-29");
         Assert.assertEquals(patientSnapshot7.getAgeBin(), "30-39");
         Assert.assertEquals(patientSnapshot8.getAgeBin(), "40-49");

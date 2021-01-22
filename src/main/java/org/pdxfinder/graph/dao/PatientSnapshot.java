@@ -108,8 +108,10 @@ public class PatientSnapshot {
             ageBin = "0-23 months";
         } else if (ageInteger < 10) {
             ageBin = "2-9";
+        } else if (ageInteger < 16) {
+            ageBin = "10-15";
         } else if (ageInteger < 20) {
-            ageBin = "10-19";
+            ageBin = "16-19";
         } else if (ageInteger < 30) {
             ageBin = "20-29";
         } else if (ageInteger < 40) {
