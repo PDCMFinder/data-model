@@ -6,7 +6,6 @@ env:
   global:
   - JAVA_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xmn48M -Xmx512M"
   - NUM_THREADS=2
-  - NODE_VERSION="8.11.3"
 notifications:
   webhooks:
     urls:
