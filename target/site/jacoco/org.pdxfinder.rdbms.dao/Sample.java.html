@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Sample.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.rdbms.dao</a> &gt; <span class="el_source">Sample.java</span></div><h1>Sample.java</h1><pre class="source lang-java linenums">package org.pdxfinder.rdbms.dao;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import javax.persistence.*;
+
+@Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        &quot;Sample ID&quot;,
+        &quot;Tumor Type&quot;,
+        &quot;Passage&quot;,
+        &quot;WES-VCF-File&quot;,
+        &quot;WES-Fasta-File&quot;,
+        &quot;NCI-Gene-Panel&quot;,
+        &quot;RNASeq-Fasta-File&quot;,
+        &quot;RNASeq-RSEM-File&quot;
+})
+public class Sample {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private String sampleID;
+    private String tumorType;
+    private String passage;
+    private String wESVCFFile;
+    private String wESFastaFile;
+    private String nCIGenePanel;
+    private String rNASeqFastaFile;
+    private String rNASeqRSEMFile;
+
+    @ManyToOne
+    @JoinColumn(name=&quot;pdxinfo_id&quot;)
+    private PdmrPdxInfo pdmrPdxInfo;
+
+<span class="nc" id="L41">    public Sample() {</span>
+<span class="nc" id="L42">    }</span>
+
+    public Sample(String sampleID, String tumorType, String passage, String wESVCFFile, String wESFastaFile,
+<span class="nc" id="L45">                  String nCIGenePanel, String rNASeqFastaFile, String rNASeqRSEMFile) {</span>
+<span class="nc" id="L46">        this.sampleID = sampleID;</span>
+<span class="nc" id="L47">        this.tumorType = tumorType;</span>
+<span class="nc" id="L48">        this.passage = passage;</span>
+<span class="nc" id="L49">        this.wESVCFFile = wESVCFFile;</span>
+<span class="nc" id="L50">        this.wESFastaFile = wESFastaFile;</span>
+<span class="nc" id="L51">        this.nCIGenePanel = nCIGenePanel;</span>
+<span class="nc" id="L52">        this.rNASeqFastaFile = rNASeqFastaFile;</span>
+<span class="nc" id="L53">        this.rNASeqRSEMFile = rNASeqRSEMFile;</span>
+<span class="nc" id="L54">    }</span>
+
+
+    @JsonProperty(&quot;Sample ID&quot;)
+    public String getSampleID() {
+<span class="nc" id="L59">        return sampleID;</span>
+    }
+
+    @JsonProperty(&quot;Sample ID&quot;)
+    public void setSampleID(String sampleID) {
+<span class="nc" id="L64">        this.sampleID = sampleID;</span>
+<span class="nc" id="L65">    }</span>
+
+    @JsonProperty(&quot;Tumor Type&quot;)
+    public String getTumorType() {
+<span class="nc" id="L69">        return tumorType;</span>
+    }
+
+    @JsonProperty(&quot;Tumor Type&quot;)
+    public void setTumorType(String tumorType) {
+<span class="nc" id="L74">        this.tumorType = tumorType;</span>
+<span class="nc" id="L75">    }</span>
+
+    @JsonProperty(&quot;Passage&quot;)
+    public String getPassage() {
+<span class="nc" id="L79">        return passage;</span>
+    }
+
+    @JsonProperty(&quot;Passage&quot;)
+    public void setPassage(String passage) {
+<span class="nc" id="L84">        this.passage = passage;</span>
+<span class="nc" id="L85">    }</span>
+
+    @JsonProperty(&quot;WES-VCF-File&quot;)
+    public String getWESVCFFile() {
+<span class="nc" id="L89">        return wESVCFFile;</span>
+    }
+
+    @JsonProperty(&quot;WES-VCF-File&quot;)
+    public void setWESVCFFile(String wESVCFFile) {
+<span class="nc" id="L94">        this.wESVCFFile = wESVCFFile;</span>
+<span class="nc" id="L95">    }</span>
+
+    @JsonProperty(&quot;WES-Fastq-File&quot;)
+    public String getWESFastaFile() {
+<span class="nc" id="L99">        return wESFastaFile;</span>
+    }
+
+    @JsonProperty(&quot;WES-Fastq-File&quot;)
+    public void setWESFastaFile(String wESFastaFile) {
+<span class="nc" id="L104">        this.wESFastaFile = wESFastaFile;</span>
+<span class="nc" id="L105">    }</span>
+
+    @JsonProperty(&quot;NCI-Gene-Panel&quot;)
+    public String getNCIGenePanel() {
+<span class="nc" id="L109">        return nCIGenePanel;</span>
+    }
+
+    @JsonProperty(&quot;NCI-Gene-Panel&quot;)
+    public void setNCIGenePanel(String nCIGenePanel) {
+<span class="nc" id="L114">        this.nCIGenePanel = nCIGenePanel;</span>
+<span class="nc" id="L115">    }</span>
+
+    @JsonProperty(&quot;RNASeq-Fastq-File&quot;)
+    public String getRNASeqFastaFile() {
+<span class="nc" id="L119">        return rNASeqFastaFile;</span>
+    }
+
+    @JsonProperty(&quot;RNASeq-Fastq-File&quot;)
+    public void setRNASeqFastaFile(String rNASeqFastaFile) {
+<span class="nc" id="L124">        this.rNASeqFastaFile = rNASeqFastaFile;</span>
+<span class="nc" id="L125">    }</span>
+
+    @JsonProperty(&quot;RNASeq-RSEM-File&quot;)
+    public String getRNASeqRSEMFile() {
+<span class="nc" id="L129">        return rNASeqRSEMFile;</span>
+    }
+
+    @JsonProperty(&quot;RNASeq-RSEM-File&quot;)
+    public void setRNASeqRSEMFile(String rNASeqRSEMFile) {
+<span class="nc" id="L134">        this.rNASeqRSEMFile = rNASeqRSEMFile;</span>
+<span class="nc" id="L135">    }</span>
+
+    public void setPdmrPdxInfo(PdmrPdxInfo pdmrPdxInfo) {
+<span class="nc" id="L138">        this.pdmrPdxInfo = pdmrPdxInfo;</span>
+<span class="nc" id="L139">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

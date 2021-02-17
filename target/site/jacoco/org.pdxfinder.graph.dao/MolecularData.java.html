@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MolecularData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PDX Finder Data Model</a> &gt; <a href="index.source.html" class="el_package">org.pdxfinder.graph.dao</a> &gt; <span class="el_source">MolecularData.java</span></div><h1>MolecularData.java</h1><pre class="source lang-java linenums">package org.pdxfinder.graph.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MolecularData {
+
+
+    private String biotype;
+    private String codingSequenceChange;
+    private String variantClass;
+    private String codonChange;
+    private String aminoAcidChange;
+    private String consequence;
+    private String functionalPrediction;
+    private String readDepth;
+    private String alleleFrequency;
+    private String chromosome;
+    private String seqStartPosition;
+    private String refAllele;
+    private String altAllele;
+    private String ucscGeneId;
+    private String ncbiGeneId;
+    private String ncbiTranscriptId;
+    private String ensemblGeneId;
+    private String ensemblTranscriptId;
+    private String existingVariations;
+    private String genomeAssembly;
+    private String nucleotideChange;
+
+    private String zscore;
+
+    private String seqPosition;
+    private String seqEndPosition;
+    private String strand;
+
+    private String cdsChange;
+    private String type;
+    private String annotation;
+
+    private String cytogeneticsResult;
+    private String microsatelliteResult;
+
+    private String probeIDAffymetrix;
+
+    private String cnaLog10RCNA;
+    private String cnaLog2RCNA;
+    private String cnaCopyNumberStatus;
+    private String cnaGisticValue;
+    private String cnaPicnicValue;
+    private String fold_change;
+
+    private String cytoGenFishResult;
+
+    protected String rnaSeqCoverage;
+    protected String rnaSeqFPKM;
+    protected String rnaSeqTPM;
+    protected String rnaSeqCount;
+    protected String affyHGEAProbeId;
+    protected String affyHGEAExpressionValue;
+    protected String illuminaHGEAProbeId;
+    protected String illuminaHGEAExpressionValue;
+
+    private String fusionGeneSymbol;
+    private String fusionGenePartner1;
+    private String fusionGenePartner2;
+    private String translocationNomenclature;
+
+    private String pValue;
+    private String markerStatusComment;
+
+    private String marker;
+
+
+<span class="fc" id="L75">    public MolecularData() {</span>
+<span class="fc" id="L76">    }</span>
+
+
+
+    /**
+     * @return the chromosome
+     */
+    public String getChromosome() {
+<span class="nc" id="L84">        return chromosome;</span>
+    }
+
+    /**
+     * @param chromosome the chromosome to set
+     */
+    public void setChromosome(String chromosome) {
+<span class="nc" id="L91">        this.chromosome = chromosome;</span>
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * @return the seqPosition
+     */
+    public String getSeqPosition() {
+<span class="nc" id="L98">        return seqPosition;</span>
+    }
+
+    /**
+     * @param seqPosition the seqPosition to set
+     */
+    public void setSeqPosition(String seqPosition) {
+<span class="nc" id="L105">        this.seqPosition = seqPosition;</span>
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * @return the refAllele
+     */
+    public String getRefAllele() {
+<span class="nc" id="L112">        return refAllele;</span>
+    }
+
+    /**
+     * @param refAllele the refAllele to set
+     */
+    public void setRefAllele(String refAllele) {
+<span class="nc" id="L119">        this.refAllele = refAllele;</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * @return the consequence
+     */
+    public String getConsequence() {
+<span class="nc" id="L126">        return consequence;</span>
+    }
+
+    /**
+     * @param consequence the consequence to set
+     */
+    public void setConsequence(String consequence) {
+<span class="nc" id="L133">        this.consequence = consequence;</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * @return the aminoAcidChange
+     */
+    public String getAminoAcidChange() {
+<span class="nc" id="L140">        return aminoAcidChange;</span>
+    }
+
+    /**
+     * @param aminoAcidChange the aminoAcidChange to set
+     */
+    public void setAminoAcidChange(String aminoAcidChange) {
+<span class="nc" id="L147">        this.aminoAcidChange = aminoAcidChange;</span>
+<span class="nc" id="L148">    }</span>
+
+    /**
+     * @return the rsIdVariants
+     */
+    public String getExistingVariations() {
+<span class="nc" id="L154">        return existingVariations;</span>
+    }
+
+    /**
+     * @param rsIdVariants the rsIdVariants to set
+     */
+    public void setExistingVariations(String rsIdVariants) {
+<span class="nc" id="L161">        this.existingVariations = rsIdVariants;</span>
+<span class="nc" id="L162">    }</span>
+
+    /**
+     * @return the readDepth
+     */
+    public String getReadDepth() {
+<span class="nc" id="L168">        return readDepth;</span>
+    }
+
+    /**
+     * @param readDepth the readDepth to set
+     */
+    public void setReadDepth(String readDepth) {
+<span class="nc" id="L175">        this.readDepth = readDepth;</span>
+<span class="nc" id="L176">    }</span>
+
+    /**
+     * @return the alleleFrequency
+     */
+    public String getAlleleFrequency() {
+<span class="nc" id="L182">        return alleleFrequency;</span>
+    }
+
+    /**
+     * @param alleleFrequency the alleleFrequency to set
+     */
+    public void setAlleleFrequency(String alleleFrequency) {
+<span class="nc" id="L189">        this.alleleFrequency = alleleFrequency;</span>
+<span class="nc" id="L190">    }</span>
+
+    /**
+     * @return the altAllele
+     */
+    public String getAltAllele() {
+<span class="nc" id="L196">        return altAllele;</span>
+    }
+
+    /**
+     * @param altAllele the altAllele to set
+     */
+    public void setAltAllele(String altAllele) {
+<span class="nc" id="L203">        this.altAllele = altAllele;</span>
+<span class="nc" id="L204">    }</span>
+
+    public String getNucleotideChange() {
+<span class="nc" id="L207">        return nucleotideChange;</span>
+    }
+
+    public void setNucleotideChange(String nucleotideChange) {
+<span class="nc" id="L211">        this.nucleotideChange = nucleotideChange;</span>
+<span class="nc" id="L212">    }</span>
+
+    /**
+     * @return the genomeAssembly
+     */
+    public String getGenomeAssembly() {
+<span class="nc" id="L218">        return genomeAssembly;</span>
+    }
+
+    /**
+     * @param genomeAssembly the refAssembly to set
+     */
+    public void setGenomeAssembly(String genomeAssembly) {
+<span class="nc" id="L225">        this.genomeAssembly = genomeAssembly;</span>
+<span class="nc" id="L226">    }</span>
+
+    public String getZscore() {
+<span class="nc" id="L229">        return zscore;</span>
+    }
+
+    public void setZscore(String zscore) {
+<span class="nc" id="L233">        this.zscore = zscore;</span>
+<span class="nc" id="L234">    }</span>
+
+    public String getSeqStartPosition() {
+<span class="nc" id="L237">        return seqStartPosition;</span>
+    }
+
+    public void setSeqStartPosition(String seqStartPosition) {
+<span class="nc" id="L241">        this.seqStartPosition = seqStartPosition;</span>
+<span class="nc" id="L242">    }</span>
+
+    public String getSeqEndPosition() {
+<span class="nc" id="L245">        return seqEndPosition;</span>
+    }
+
+    public void setSeqEndPosition(String seqEndPosition) {
+<span class="nc" id="L249">        this.seqEndPosition = seqEndPosition;</span>
+<span class="nc" id="L250">    }</span>
+
+    public String getStrand() {
+<span class="nc" id="L253">        return strand;</span>
+    }
+
+    public void setStrand(String strand) {
+<span class="nc" id="L257">        this.strand = strand;</span>
+<span class="nc" id="L258">    }</span>
+
+    public String getEnsemblTranscriptId() {
+<span class="nc" id="L261">        return ensemblTranscriptId;</span>
+    }
+
+    public void setEnsemblTranscriptId(String ensemblTranscriptId) {
+<span class="nc" id="L265">        this.ensemblTranscriptId = ensemblTranscriptId;</span>
+<span class="nc" id="L266">    }</span>
+
+    public String getUcscGeneId() {
+<span class="nc" id="L269">        return ucscGeneId;</span>
+    }
+
+    public void setUcscGeneId(String ucscTranscriptId) {
+<span class="nc" id="L273">        this.ucscGeneId = ucscTranscriptId;</span>
+<span class="nc" id="L274">    }</span>
+
+    public String getNcbiTranscriptId() {
+<span class="nc" id="L277">        return ncbiTranscriptId;</span>
+    }
+
+    public void setNcbiTranscriptId(String ncbiTranscriptId) {
+<span class="nc" id="L281">        this.ncbiTranscriptId = ncbiTranscriptId;</span>
+<span class="nc" id="L282">    }</span>
+
+    public String getCdsChange() {
+<span class="nc" id="L285">        return cdsChange;</span>
+    }
+
+    public void setCdsChange(String cdsChange) {
+<span class="nc" id="L289">        this.cdsChange = cdsChange;</span>
+<span class="nc" id="L290">    }</span>
+
+    public String getType() {
+<span class="nc" id="L293">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="nc" id="L297">        this.type = type;</span>
+<span class="nc" id="L298">    }</span>
+
+    public String getAnnotation() {
+<span class="nc" id="L301">        return annotation;</span>
+    }
+
+    public void setAnnotation(String annotation) {
+<span class="nc" id="L305">        this.annotation = annotation;</span>
+<span class="nc" id="L306">    }</span>
+
+    public String getCytogeneticsResult() {
+<span class="nc" id="L309">        return cytogeneticsResult;</span>
+    }
+
+    public void setCytogeneticsResult(String cytogeneticsResult) {
+<span class="nc" id="L313">        this.cytogeneticsResult = cytogeneticsResult;</span>
+<span class="nc" id="L314">    }</span>
+
+    public String getMicrosatelliteResult() {
+<span class="nc" id="L317">        return microsatelliteResult;</span>
+    }
+
+    public void setMicrosatelliteResult(String microsatelliteResult) {
+<span class="nc" id="L321">        this.microsatelliteResult = microsatelliteResult;</span>
+<span class="nc" id="L322">    }</span>
+
+    public String getProbeIDAffymetrix() {
+<span class="nc" id="L325">        return probeIDAffymetrix;</span>
+    }
+
+    public void setProbeIDAffymetrix(String probeIDAffymetrix) {
+<span class="nc" id="L329">        this.probeIDAffymetrix = probeIDAffymetrix;</span>
+<span class="nc" id="L330">    }</span>
+
+    public String getCnaLog10RCNA() {
+<span class="nc" id="L333">        return cnaLog10RCNA;</span>
+    }
+
+    public void setCnaLog10RCNA(String cnaLog10RCNA) {
+<span class="nc" id="L337">        this.cnaLog10RCNA = cnaLog10RCNA;</span>
+<span class="nc" id="L338">    }</span>
+
+    public String getCnaLog2RCNA() {
+<span class="nc" id="L341">        return cnaLog2RCNA;</span>
+    }
+
+    public void setCnaLog2RCNA(String cnaLog2RCNA) {
+<span class="nc" id="L345">        this.cnaLog2RCNA = cnaLog2RCNA;</span>
+<span class="nc" id="L346">    }</span>
+
+    public String getCnaCopyNumberStatus() {
+<span class="nc" id="L349">        return cnaCopyNumberStatus;</span>
+    }
+
+    public void setCnaCopyNumberStatus(String cnaCopyNumberStatus) {
+<span class="nc" id="L353">        this.cnaCopyNumberStatus = cnaCopyNumberStatus;</span>
+<span class="nc" id="L354">    }</span>
+
+    public String getCnaGisticValue() {
+<span class="nc" id="L357">        return cnaGisticValue;</span>
+    }
+
+    public void setCnaGisticValue(String cnaGisticValue) {
+<span class="nc" id="L361">        this.cnaGisticValue = cnaGisticValue;</span>
+<span class="nc" id="L362">    }</span>
+
+    public String getCnaPicnicValue() {
+<span class="nc" id="L365">        return cnaPicnicValue;</span>
+    }
+
+    public void setCnaPicnicValue(String cnaPicnicValue) {
+<span class="nc" id="L369">        this.cnaPicnicValue = cnaPicnicValue;</span>
+<span class="nc" id="L370">    }</span>
+
+
+    public String getCytoGenFishResult() {
+<span class="nc" id="L374">        return cytoGenFishResult;</span>
+    }
+
+    public void setCytoGenFishResult(String cytoGenFishResult) {
+<span class="nc" id="L378">        this.cytoGenFishResult = cytoGenFishResult;</span>
+<span class="nc" id="L379">    }</span>
+
+    public String getRnaSeqCoverage() {
+<span class="nc" id="L382">        return rnaSeqCoverage;</span>
+    }
+
+    public void setRnaSeqCoverage(String rnaSeqCoverage) {
+<span class="nc" id="L386">        this.rnaSeqCoverage = rnaSeqCoverage;</span>
+<span class="nc" id="L387">    }</span>
+
+    public String getRnaSeqFPKM() {
+<span class="nc" id="L390">        return rnaSeqFPKM;</span>
+    }
+
+    public void setRnaSeqFPKM(String rnaSeqFPKM) {
+<span class="nc" id="L394">        this.rnaSeqFPKM = rnaSeqFPKM;</span>
+<span class="nc" id="L395">    }</span>
+
+    public String getRnaSeqTPM() {
+<span class="nc" id="L398">        return rnaSeqTPM;</span>
+    }
+
+    public void setRnaSeqTPM(String rnaSeqTPM) {
+<span class="nc" id="L402">        this.rnaSeqTPM = rnaSeqTPM;</span>
+<span class="nc" id="L403">    }</span>
+
+    public String getRnaSeqCount() {
+<span class="nc" id="L406">        return rnaSeqCount;</span>
+    }
+
+    public void setRnaSeqCount(String rnaSeqCount) {
+<span class="nc" id="L410">        this.rnaSeqCount = rnaSeqCount;</span>
+<span class="nc" id="L411">    }</span>
+
+    public String getAffyHGEAProbeId() {
+<span class="nc" id="L414">        return affyHGEAProbeId;</span>
+    }
+
+    public void setAffyHGEAProbeId(String affyHGEAProbeId) {
+<span class="nc" id="L418">        this.affyHGEAProbeId = affyHGEAProbeId;</span>
+<span class="nc" id="L419">    }</span>
+
+    public String getAffyHGEAExpressionValue() {
+<span class="nc" id="L422">        return affyHGEAExpressionValue;</span>
+    }
+
+    public void setAffyHGEAExpressionValue(String affyHGEAExpressionValue) {
+<span class="nc" id="L426">        this.affyHGEAExpressionValue = affyHGEAExpressionValue;</span>
+<span class="nc" id="L427">    }</span>
+
+    public String getIlluminaHGEAProbeId() {
+<span class="nc" id="L430">        return illuminaHGEAProbeId;</span>
+    }
+
+    public void setIlluminaHGEAProbeId(String illuminaHGEAProbeId) {
+<span class="nc" id="L434">        this.illuminaHGEAProbeId = illuminaHGEAProbeId;</span>
+<span class="nc" id="L435">    }</span>
+
+    public String getIlluminaHGEAExpressionValue() {
+<span class="nc" id="L438">        return illuminaHGEAExpressionValue;</span>
+    }
+
+    public void setIlluminaHGEAExpressionValue(String illuminaHGEAExpressionValue) {
+<span class="nc" id="L442">        this.illuminaHGEAExpressionValue = illuminaHGEAExpressionValue;</span>
+<span class="nc" id="L443">    }</span>
+
+    public String getFold_change() {
+<span class="nc" id="L446">        return fold_change;</span>
+    }
+
+    public void setFold_change(String fold_change) {
+<span class="nc" id="L450">        this.fold_change = fold_change;</span>
+<span class="nc" id="L451">    }</span>
+
+    public String getMarker() {
+<span class="nc" id="L454">        return marker;</span>
+    }
+
+    public void setMarker(String marker) {
+<span class="fc" id="L458">        this.marker = marker;</span>
+<span class="fc" id="L459">    }</span>
+
+    public boolean hasMarker() {
+<span class="nc bnc" id="L462" title="All 2 branches missed.">        return marker != null;</span>
+    }
+
+    public String getBiotype() {
+<span class="nc" id="L466">        return biotype;</span>
+    }
+
+    public void setBiotype(String biotype) {
+<span class="nc" id="L470">        this.biotype = biotype;</span>
+<span class="nc" id="L471">    }</span>
+
+    public String getCodingSequenceChange() {
+<span class="nc" id="L474">        return codingSequenceChange;</span>
+    }
+
+    public void setCodingSequenceChange(String codingSequenceChange) {
+<span class="nc" id="L478">        this.codingSequenceChange = codingSequenceChange;</span>
+<span class="nc" id="L479">    }</span>
+
+    public String getVariantClass() {
+<span class="nc" id="L482">        return variantClass;</span>
+    }
+
+    public void setVariantClass(String variantClass) {
+<span class="nc" id="L486">        this.variantClass = variantClass;</span>
+<span class="nc" id="L487">    }</span>
+
+    public String getCodonChange() {
+<span class="nc" id="L490">        return codonChange;</span>
+    }
+
+    public void setCodonChange(String codonChange) {
+<span class="nc" id="L494">        this.codonChange = codonChange;</span>
+<span class="nc" id="L495">    }</span>
+
+    public String getFunctionalPrediction() {
+<span class="nc" id="L498">        return functionalPrediction;</span>
+    }
+
+    public void setFunctionalPrediction(String functionalPrediction) {
+<span class="nc" id="L502">        this.functionalPrediction = functionalPrediction;</span>
+<span class="nc" id="L503">    }</span>
+
+    public String getNcbiGeneId() {
+<span class="nc" id="L506">        return ncbiGeneId;</span>
+    }
+
+    public void setNcbiGeneId(String ncbiGeneId) {
+<span class="nc" id="L510">        this.ncbiGeneId = ncbiGeneId;</span>
+<span class="nc" id="L511">    }</span>
+
+    public String getEnsemblGeneId() {
+<span class="nc" id="L514">        return ensemblGeneId;</span>
+    }
+
+    public void setEnsemblGeneId(String ensemblGeneId) {
+<span class="nc" id="L518">        this.ensemblGeneId = ensemblGeneId;</span>
+<span class="nc" id="L519">    }</span>
+
+    @Override public String toString() {
+<span class="nc" id="L522">        return String.format(&quot;[%s]&quot;, this.marker);</span>
+    }
+
+    public String getMarkerName(MolecularData molecularData) {
+<span class="nc" id="L526">        return this.marker;</span>
+    }
+
+    public String getFusionGeneSymbol() {
+<span class="nc" id="L530">        return fusionGeneSymbol;</span>
+    }
+
+    public void setFusionGeneSymbol(String fusionGeneSymbol) {
+<span class="nc" id="L534">        this.fusionGeneSymbol = fusionGeneSymbol;</span>
+<span class="nc" id="L535">    }</span>
+
+    public String getFusionGenePartner1() {
+<span class="nc" id="L538">        return fusionGenePartner1;</span>
+    }
+
+    public void setFusionGenePartner1(String fusionGenePartner1) {
+<span class="nc" id="L542">        this.fusionGenePartner1 = fusionGenePartner1;</span>
+<span class="nc" id="L543">    }</span>
+
+    public String getFusionGenePartner2() {
+<span class="nc" id="L546">        return fusionGenePartner2;</span>
+    }
+
+    public void setFusionGenePartner2(String fusionGenePartner2) {
+<span class="nc" id="L550">        this.fusionGenePartner2 = fusionGenePartner2;</span>
+<span class="nc" id="L551">    }</span>
+
+    public String getTranslocationNomenclature() {
+<span class="nc" id="L554">        return translocationNomenclature;</span>
+    }
+
+    public void setTranslocationNomenclature(String translocationNomenclature) {
+<span class="nc" id="L558">        this.translocationNomenclature = translocationNomenclature;</span>
+<span class="nc" id="L559">    }</span>
+
+    public String getpValue() {
+<span class="nc" id="L562">        return pValue;</span>
+    }
+
+    public void setpValue(String pValue) {
+<span class="nc" id="L566">        this.pValue = pValue;</span>
+<span class="nc" id="L567">    }</span>
+
+    public String getMarkerStatusComment() {
+<span class="nc" id="L570">        return markerStatusComment;</span>
+    }
+
+    public void setMarkerStatusComment(String markerStatusComment) {
+<span class="nc" id="L574">        this.markerStatusComment = markerStatusComment;</span>
+<span class="nc" id="L575">    }</span>
+
+    public static List&lt;String&gt; getAminoAcidChangesFromMolecularDataList(List&lt;MolecularData&gt; molecularDataList){
+<span class="nc" id="L578">        List&lt;String&gt; markerList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L579">        molecularDataList.forEach( mData -&gt; markerList.add(mData.getAminoAcidChange()) );</span>
+<span class="nc" id="L580">        return markerList;</span>
+    }
+
+    public static List&lt;String&gt; getMarkersFromMolecularDataList(List&lt;MolecularData&gt; molecularDataList){
+<span class="nc" id="L584">        List&lt;String&gt; markerList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L585">        molecularDataList.forEach( mData -&gt; markerList.add(mData.getMarker()) );</span>
+<span class="nc" id="L586">        return markerList;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
