@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.pdxfinder.graph.dao"},{"l":"org.pdxfinder.graph.queryresults"},{"l":"org.pdxfinder.graph.repositories"},{"l":"org.pdxfinder.rdbms.dao"},{"l":"org.pdxfinder.rdbms.repositories"}]

@@ -1,5 +1,0 @@
-org.pdxfinder.graph.dao
-org.pdxfinder.graph.queryresults
-org.pdxfinder.graph.repositories
-org.pdxfinder.rdbms.dao
-org.pdxfinder.rdbms.repositories
