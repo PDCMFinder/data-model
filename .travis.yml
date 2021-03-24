@@ -1,21 +1,25 @@
 language: java
 sudo: false
 jdk:
-  - openjdk11
+- openjdk11
 env:
   global:
-    - JAVA_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xmn48M -Xmx512M"
-    - NUM_THREADS=2
-    - NODE_VERSION="8.11.3"
+  - JAVA_OPTS="-XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xmn48M -Xmx512M"
+  - NUM_THREADS=2
+  - NODE_VERSION="8.11.3"
+  - secure: mJaO/VXYKMT5h6dDmQydUOWPAxzS3/RUWWXKH7a6RWlIvNnHR9REH0ftUj2c1dFHSk6YZgGQPIJwy5DJFGYkVHl3ZtgOBVOszzHKGh/Pde/EPO9TpQ+ty6ctT+L9tpVL/aIPTriWNQfSvJ+TF1QgKWjJ/y5+xOpqhy0wPeRohVu/yB1EE0CBTN9rdCwP/JeVAca7IlqxrN9ReEOiwBPgPcu7G8EYE8qBCydBkU7fTCO6w0XACf4xR2hrcU6hSpCjMxjRyFKeti9DJKPOM782YsJeLyzSIOJVz27R4gzmAE3bpbTUqAeARipyftKd+PlLrXpNGOaZ7YF0SrwVvJhikBh4q544sYWygLkRUZClnsOXgSSVJIIYL39zWH3FoTSHIEN0fMBVznFQhZRnmgZgOeU+pPFN77zGTf5mXbB1uyImdHfufYOZ0CdUiL7Z1m3yvdx8TG1M9WZc6EFv7p4GBoqu37utsXyIc2bhMc+jzgNFIHmUWgKT6Hj85Hf7s5GqUQICBLaMG2CKxDFZp2lBA1TVfpCUyjAV2ZcnSymWyXwyhGS/pEd6+HvYZXT/v4B1t7vA6oYUMWekH4cDp65wO/Tr1IPMDpc1qN7W9C1TQweEkN/wW6zTuqfmYEzTJTEEmYm0IXuQeNYFQ+tuCaWQI8CUjbG73NuBLPBMLnWg3TU=
 notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/969b5598af30afd3e0a2
+    - https://webhooks.gitter.im/e/969b5598af30afd3e0a2
     on_success: always
     on_failure: always
     on_start: never
 addons:
   sonarcloud:
     organization: pdxfinder
-cript:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=data-model -Dsonar.login="zV+CSCIVBB6AuAq3giobCzn7zFsg/n+YSiHDc82+iKsQbtgZy6QnRsSBhrkgb5sWI5WRM9hDTb/sFsqBaukt6vL7ygRJ2+IO5pokQ5CpE5Hfgc7Y/ibQNrPTkx9PZ3I/5C2C9zrydqfKIVb1OAtQoFccDLHKpwN4FVoBlzS4nJ6DXw820kvkBHvdRuYg85I4xqYcRRBpbW3b6bnMLAEYVRO5kiSt+YcQ732nD8EDjYJTxJbQiR7gquxVqSORKUesHXR0hGr9UwYn9w/dH+z4I2cgMptUPtc7+eQPmi267B32R0QCRtil7xhab7ohmToBxjDjNa+fpOBS403AnrfDhZMf2IzUIIn7DhDAfvZ68XzDYVuKrCUGm1SLpKJt5KZmbpnAvELQWRNR67NhsaYh2iuN8ZSn02exm9eMPetoDj95F3tQ3F/9Zg0L1nsVMF/vNSupu6CCE/oyg0xJ1hqn7mp9hHYAhg71sBsmXahovMyJLdjP2G2dApQlhzL2RUOc1mAe7ZF7YRkvt4j5kcmABWqTsaAvKGoJd/LPL1gQp5kERfgiQWKsQXLdLbSG8EO64mroIeMjU6ThF4gbNyVV8YDJViK0J4ZPnSS+CowIdam/kSHjcBYyZPAEernhHOcpPO6iP4DHwFuClnDHgwmpCudpWPbA1AT6tdLthORs+Fo="
+    token:
+      secure: "tyrzj5KWBQSE/6OZp61T15iQ5svk5KkH6W5luysRWcjGlj/tZTHJlZ/dmoRJNSwUZ3ZNo9+ZeQd25F8NPJ0PwhMT7DlQ70WNmBxKz2EOAQc4GwoobSvAMlBPBv0SmJIXlLGoc280ArH5PqY6ofX/mXc04aaGWZpuCdDT/gu3P5hML36/2i7k3x/8FA60/D8fb/3HClpu/BIZP7RyJZ1hwYFN+Py9JQ7/I3MZpKVGPQH2VozpQNQ7FhDk6zolm8rmioQ9azf+082K1D+NJGsiDdnZJWXgFvAGjj0NJckv91ZYdsvTTz2x3B6TXNCg9L8v8B3gTzWdMF6wcPuEGTL5pIVfqERVojWWlswCN4//TBwXRMKVTFR54Xdg0fRtt8f18kUuMBtDTo4YqqZlgnSHSezNKYxCiyvH8DfiTxFxJv9h7VZ8yhPJZ1ut8SRlRNln1oBT7HNSj0EhBIv7jT0ohyt67BRH9ZKxF8T7zixbPEQe+fT8Xrjxgz2KAxw70Qi3PQsLu4tvAy7o3Zm1LRHTC5u2Y2otnz+GFVpRsgrHYunBvGputRLk+DtOXGNuR9vqqJMgBcBjGxi5STxj6JLT6lCytETGP0lbYHataBoKbhlxHVnkxSokYzNpRhe8LsPvZqdYkJv9Y65mBbrwStZMLscJwbKf1KekJF1EenjiJ90="
+script:
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=PDXFinder_data-model
+
